@@ -2,8 +2,10 @@ import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
-import cors from "cors"
+import cors from "cors";
+import dotenv from "dotenv";
 
+dotenv.config()
 const app = express();
 
 // Middleware for parsing request
@@ -15,7 +17,7 @@ app.get("/", (request, response) => {
 });
 
 // Option1: Allow All origins with default of cors(*)
-app.use(cors())
+app.use(cors());
 
 // Option2: Allow custom origins
 // app.use(cors({
