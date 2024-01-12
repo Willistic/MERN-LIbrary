@@ -1,13 +1,11 @@
+import dotenv from "dotenv";
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
 import cors from "cors";
-import dotenv from "dotenv";
 
-dotenv.config()
-
-console.log("MongoDB Connection String:", mongoDBURL);
+dotenv.config();
 
 const app = express();
 
@@ -21,13 +19,6 @@ app.get("/", (request, response) => {
 
 // Option1: Allow All origins with default of cors(*)
 app.use(cors());
-
-// Option2: Allow custom origins
-// app.use(cors({
-//   origin: "http://localhost:3000",
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   allowedHeaders: ["Content-Type"]
-// }))
 
 app.use("/books", booksRoute);
 
